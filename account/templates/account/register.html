@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">
+    <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2); width: 350px;">
+        <h2 style="text-align: center; margin-bottom: 20px;">Register</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% if error %}
+                <div class = "alert alert-danger">
+                {{error}}
+                </div>
+            {% endif %}
+            <div style="margin-bottom: 15px;">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="Enter username" required>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" required>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="password1">Password</label>
+                <input type="password" name="password1" id="password1" class="form-control" placeholder="Enter password" required>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="password2">Confirm Password</label>
+                <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirm password" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
