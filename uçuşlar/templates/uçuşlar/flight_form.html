@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{% if form.errors %}
+<div class="alert alert-danger">
+  <strong>Form Errors:</strong>
+  <ul>
+    {% for field, errors in form.errors.items %}
+      {% for error in errors %}
+        <li>{{ field }}: {{ error }}</li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<div class="container mt-4" style="max-width:600px;">
+  <h3 class="mb-3">{{ title }}</h3>
+  {% if messages %}
+    {% for m in messages %}
+      <div class="alert alert-{{ m.tags }} mb-2">{{ m }}</div>
+    {% endfor %}
+  {% endif %}
+  <form method="post" class="card card-body shadow-sm">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+    <div class="mb-3">
+      <label class="form-label">Flight No</label>
+      {{ form.flt_no }}
+      <div class="text-danger small">{{ form.flt_no.errors }}</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Sector</label>
+      {{ form.sector }}
+      <div class="text-danger small">{{ form.sector.errors }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Departure Date</label>
+        {{ form.sch_dep_dt }}
+        <div class="text-danger small">{{ form.sch_dep_dt.errors }}</div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Departure Time</label>
+        {{ form.sch_dep_tm }}
+        <div class="text-danger small">{{ form.sch_dep_tm.errors }}</div>
+      </div>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <a class="btn btn-secondary" href="{% url 'account:main_page' %}">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

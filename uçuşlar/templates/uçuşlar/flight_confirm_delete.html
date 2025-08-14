@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Delete Flight{% endblock %}
+{% block content %}
+<div class="container mt-4" style="max-width:600px;">
+  <div class="card card-body shadow-sm">
+    <h4>Delete flight {{ flight.flt_no }}?</h4>
+    <p>Sector: {{ flight.sector }} — {{ flight.sch_dep_dt|date:"d.m.Y" }} {{ flight.sch_dep_tm }}</p>
+    <form method="post" class="d-flex gap-2">
+      {% csrf_token %}
+      <button class="btn btn-danger" type="submit">Yes, delete</button>
+      <a class="btn btn-secondary" href="{% url 'account:main_page' %}">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
