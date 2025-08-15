@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from uçuşlar.models import Flight
 
 
+
 @login_required
 def main_page(request):
      flights = Flight.objects.all().order_by("sch_dep_dt", "sch_dep_tm")

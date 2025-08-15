@@ -2,6 +2,46 @@
 {% block title %}Flight List{% endblock %}
 
 {% block content %}
+
+
+<div class="bg-white p-3 shadow-sm rounded mb-3">
+  <form method="get" action="{% url 'account:main_page' %}" class="row g-2 align-items-end">
+    <div class="col-12 col-md-3">
+      <label class="form-label mb-1">Flight No</label>
+      <input type="text" name="flt_no" class="form-control" placeholder="e.g. 1875"
+             value="{{ flt_no }}">
+    </div>
+
+    <div class="col-12 col-md-3">
+      <label class="form-label mb-1">Sector</label>
+      <input type="text" name="sector" class="form-control" placeholder="e.g. AYTECN"
+             value="{{ sector }}">
+    </div>
+
+    <div class="col-6 col-md-3">
+      <label class="form-label mb-1">Departure Date</label>
+      <input type="date" name="sch_dep_dt" class="form-control"
+             value="{{ sch_dep_dt }}">
+    </div>
+
+    <div class="col-6 col-md-2">
+      <label class="form-label mb-1">Departure Time</label>
+      <input type="time" name="sch_dep_tm" class="form-control"
+             value="{{ sch_dep_tm }}">
+    </div>
+
+    <div class="col-12 col-md-1 d-grid">
+      <button type="submit" class="btn btn-primary">Filter</button>
+    </div>
+
+    <div class="col-12 mt-2 d-md-none"></div>
+
+    <div class="col-12 col-md-auto">
+      <a href="{% url 'account:main_page' %}" class="btn btn-outline-secondary">Clear</a>
+    </div>
+  </form>
+</div>
+
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h2 class="mb-0">Flight Schedule</h2>
